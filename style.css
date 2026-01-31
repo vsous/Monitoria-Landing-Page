@@ -1,0 +1,241 @@
+/* Configurações Globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif; /* Uma fonte parecida com a da imagem */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between; /* Empurra logo pra esquerda e nav pra direita */
+    align-items: center;
+}
+
+header {
+    padding: 20px 0;
+    background-color: white;
+    border-bottom: #f0f0f0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav ul { /* Estilo do Menu */
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 24px; /* Espaço entre os links */
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+nav ahover {
+    color: #e91e63;
+}
+
+nav a.active {
+    color: #FA74BB; /* Cor rosa da Home na imagem */
+    font-weight: 600;
+}
+
+.btn-primary {
+    background-color: black;
+    color: white !important; /* Garante que a cor do texto seja branca */
+    text-decoration: none;
+    padding: 20px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    display: inline-block;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #FA74BB; /* Muda para rosa ao passar o mouse */
+    transform: translateY(-2px); /* Pequeno efeito de subir ao passar o mouse */
+}
+
+/* Layout da Hero */
+.hero {
+    display: flex;
+    align-items: center; /* Alinha o texto verticalmente com o centro da imagem */
+    justify-content: space-between;
+    padding: 0 32px 0 32px;
+    gap: 60px; /* Espaço entre o texto e a imagem */
+}
+
+.hero-content {
+    flex: 1.2; /* Dá um pouco mais de espaço para o texto */
+}
+
+.hero-image {
+    flex: 1;
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Tipografia e Cores */
+.hero h1 {
+    font-size: 2.4rem; /* Tamanho grande como na imagem */
+    line-height: 1.1;
+    color: #1a1a1a;
+    margin-bottom: 24px;
+    font-weight: 700;
+}
+
+/* Aplicando os destaques coloridos */
+.hero h1 .destaque-rosa{
+    color: #FA74BB;
+}
+
+.hero h1 .destaque-azul {
+    color: #00c1cf;
+}
+
+.hero p {
+    font-size: 1.4rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    max-width: 500px; /* Evita que o parágrafo fique largo demais */
+}
+
+/* A parte que encosta nas margens da tela */
+.pergunta-chamativa {
+    background-color: #FA74BB; /* Um rosa bem clarinho para o fundo */
+    width: 100%;
+}
+
+/* O conteúdo que respeita os 1200px */
+.pergunta-chamativa .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+.pergunta-chamativa p {
+    color: white; /* Texto em rosa para combinar */
+    font-size: 1.4rem;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+.features {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    padding: 24px 0;
+}
+
+.features-image, .features-content {
+    flex: 1;
+}
+
+.features-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.lista-topicos {
+    list-style: none;
+}
+
+.lista-topicos li {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 35px;
+    font-size: 1.15rem;
+    color: #333;
+    line-height: 1.5;
+}
+
+.emoji {
+    font-size: 1.8rem;
+    line-height: 1;
+}
+
+.lista-topicos strong {
+    color: #000;
+    font-weight: 700;
+}
+
+/* RESPONSIVIDADE (MOBILE)*/
+
+/* Quando a tela for menor que 768px */
+@media (max-width: 800px) {
+
+    /* 1. Reset do Container: Remove o 'space-between' para os itens empilharem */
+    .container {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    /* 2. Hero Section: Texto em cima, Imagem embaixo */
+    .hero {
+        flex-direction: column;
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    .hero-content {
+        order: 1; /* Texto primeiro */
+    }
+
+    .hero-image {
+        order: 2; /* Imagem depois */
+        margin-top: 30px;
+    }
+
+    .hero h1 {
+        font-size: 1.8rem; /* Diminui o título no celular */
+    }
+
+    .hero p {
+        margin: 0 auto 30px auto; /* Centraliza o parágrafo */
+    }
+
+    /* 3. Caixa de Pergunta: Ajuste de preenchimento */
+    .pergunta-chamativa .container {
+        display: block; /* Garante que não tente separar o texto de nada */
+        padding: 40px 20px;
+    }
+
+    .pergunta-chamativa p {
+        font-size: 1.2rem;
+    }
+
+    /* 4. Features Section: Inverte para o texto ficar sempre em cima da imagem */
+    .features {
+        flex-direction: column;
+        padding: 40px 20px;
+        gap: 40px;
+    }
+
+    .features-content {
+        order: 1;
+    }
+
+    .features-image {
+        order: 2;
+    }
+
+    /* 5. Menu: Ajuste para os links não ficarem colados */
+    nav ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
