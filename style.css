@@ -3,10 +3,24 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif; /* Uma fonte parecida com a da imagem */
+    font-family: 'Inter', sans-serif; 
 }
 
-.container {
+body {
+    /* Cor de fundo da página */
+    background-color: #ffffff; 
+
+    /* Criação das bolinhas cinzas */
+    background-image: radial-gradient(#e5dada 1px, transparent 1px);
+    
+    /* Tamanho do espaçamento entre as bolinhas */
+    background-size: 16px 16px; 
+    
+    /* Garante que o fundo não role e fique fixo*/
+    background-attachment: fixed;
+}
+
+    .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
@@ -22,6 +36,25 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
+}
+
+.menu-toggle {
+    display: none; /* Fica escondido no computador */
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 100; /* Garante que fique acima de tudo */
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #000;
+    border-radius: 2px;
+    transition: 0.3s;
 }
 
 nav ul { /* Estilo do Menu */
@@ -62,7 +95,6 @@ nav a.active {
     transform: translateY(-2px); /* Pequeno efeito de subir ao passar o mouse */
 }
 
-/* Layout da Hero */
 .hero {
     display: flex;
     align-items: center; /* Alinha o texto verticalmente com o centro da imagem */
@@ -85,9 +117,8 @@ nav a.active {
     display: block;
 }
 
-/* Tipografia e Cores */
 .hero h1 {
-    font-size: 2.4rem; /* Tamanho grande como na imagem */
+    font-size: 2.4rem; 
     line-height: 1.1;
     color: #1a1a1a;
     margin-bottom: 24px;
@@ -125,7 +156,7 @@ nav a.active {
 }
 
 .pergunta-chamativa p {
-    color: white; /* Texto em rosa para combinar */
+    color: white; 
     font-size: 1.4rem;
     line-height: 1.6;
     font-weight: 500;
@@ -173,18 +204,85 @@ nav a.active {
 }
 
 /* RESPONSIVIDADE (MOBILE)*/
-
-/* Quando a tela for menor que 768px */
 @media (max-width: 800px) {
 
-    /* 1. Reset do Container: Remove o 'space-between' para os itens empilharem */
+    .menu-toggle {
+    display: flex; /* Aparece no celular */
+    order: 2;
+    }
+
+    .menu-toggle.active .bar:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+    /* A segunda barra (do meio) desaparece */
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    /* A terceira barra gira 45 graus e sobe */
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    /* Esconde a lista por padrão no celular */
+    .nav-menu {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        background-color: white;
+        position: absolute; /* Para flutuar sobre o conteúdo */
+        top: 70px; /* Ajuste para ficar logo abaixo do logo */
+        left: 0;
+        padding: 20px 0;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+        opacity: 0;
+        transform: translateY(-20px);
+        pointer-events: none;
+        transition: all 0.4s ease;
+    } 
+
+    /* Só será ativada pelo JavaScript */
+    .nav-menu.active {
+        opacity: 1;
+        transform: translateY(0); /* Desce para a posição original */
+        pointer-events: auto; /* Permite clicar nos links */
+    }
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5); 
+        z-index: 999; 
+        
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+    }
+
+    .overlay.active {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    header .container {
+        flex-direction: row; 
+        justify-content: space-between;
+        position: relative;
+    }
+
+    /* Remove o 'space-between' para os itens empilharem */
     .container {
         flex-direction: column;
         text-align: center;
         gap: 20px;
     }
 
-    /* 2. Hero Section: Texto em cima, Imagem embaixo */
+    /* Texto em cima, Imagem embaixo */
     .hero {
         flex-direction: column;
         padding: 40px 20px;
@@ -208,7 +306,7 @@ nav a.active {
         margin: 0 auto 30px auto; /* Centraliza o parágrafo */
     }
 
-    /* 3. Caixa de Pergunta: Ajuste de preenchimento */
+    /* Ajuste de preenchimento */
     .pergunta-chamativa .container {
         display: block; /* Garante que não tente separar o texto de nada */
         padding: 40px 20px;
@@ -218,7 +316,7 @@ nav a.active {
         font-size: 1.2rem;
     }
 
-    /* 4. Features Section: Inverte para o texto ficar sempre em cima da imagem */
+    /* Inverte para o texto ficar sempre em cima da imagem */
     .features {
         flex-direction: column;
         padding: 40px 20px;
@@ -233,7 +331,7 @@ nav a.active {
         order: 2;
     }
 
-    /* 5. Menu: Ajuste para os links não ficarem colados */
+    /* Ajuste para os links não ficarem colados */
     nav ul {
         flex-direction: column;
         gap: 15px;
