@@ -1,52 +1,57 @@
-/* Configurações Globais */
+/* 1. VARIÁVEIS E CONFIGURAÇÕES GLOBAIS */
+:root {
+    --pink: #FA74BB;
+    --blue: #00c1cf;
+    --dark: #1a1a1a;
+    --gray: #666;
+    --bg-dots: #e5dada;
+    --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif; 
+    font-family: 'Inter', sans-serif;
 }
 
 body {
-    /* Cor de fundo da página */
-    background-color: #ffffff; 
-
-    /* Criação das bolinhas cinzas */
-    background-image: radial-gradient(#e5dada 1px, transparent 1px);
-    
-    /* Tamanho do espaçamento entre as bolinhas */
-    background-size: 16px 16px; 
-    
-    /* Garante que o fundo não role e fique fixo*/
+    background-color: #ffffff;
+    background-image: radial-gradient(var(--bg-dots) 1px, transparent 1px);
+    background-size: 16px 16px;
     background-attachment: fixed;
 }
-
-    .container {
+.container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-    display: flex;
-    justify-content: space-between; /* Empurra logo pra esquerda e nav pra direita */
-    align-items: center;
 }
 
 header {
-    padding: 20px 0;
+    padding: 15px 0;
     background-color: white;
-    border-bottom: #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
     position: sticky;
     top: 0;
     z-index: 1000;
+    width: 100%;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .menu-toggle {
-    display: none; /* Fica escondido no computador */
+    display: none; /* Escondido no desktop */
     flex-direction: column;
     gap: 5px;
     background: none;
     border: none;
     cursor: pointer;
     padding: 10px;
-    z-index: 100; /* Garante que fique acima de tudo */
+    z-index: 1100;
 }
 
 .bar {
@@ -54,109 +59,89 @@ header {
     height: 3px;
     background-color: #000;
     border-radius: 2px;
-    transition: 0.3s;
+    transition: var(--transition);
 }
 
-nav ul { /* Estilo do Menu */
+nav ul {
     display: flex;
     align-items: center;
     list-style: none;
-    gap: 24px; /* Espaço entre os links */
+    gap: 24px;
 }
 
 nav a {
     text-decoration: none;
     color: #333;
     font-weight: 500;
+    transition: color 0.3s;
 }
 
-nav ahover {
-    color: #e91e63;
+nav a:hover, nav a.active {
+    color: var(--pink);
 }
 
-nav a.active {
-    color: #FA74BB; /* Cor rosa da Home na imagem */
-    font-weight: 600;
-}
+nav a.active { font-weight: 600; }
 
 .btn-primary {
     background-color: black;
-    color: white !important; /* Garante que a cor do texto seja branca */
+    color: white !important;
     text-decoration: none;
-    padding: 20px 20px;
+    padding: 15px 25px; 
     border-radius: 6px;
     font-weight: 600;
     display: inline-block;
-    transition: background-color 0.3s, transform 0.2s;
+    transition: var(--transition);
 }
 
 .btn-primary:hover {
-    background-color: #FA74BB; /* Muda para rosa ao passar o mouse */
-    transform: translateY(-2px); /* Pequeno efeito de subir ao passar o mouse */
+    background-color: var(--pink);
+    transform: translateY(-2px);
 }
 
+/* 4. SEÇÕES PRINCIPAIS */
 .hero {
     display: flex;
-    align-items: center; /* Alinha o texto verticalmente com o centro da imagem */
+    align-items: center;
     justify-content: space-between;
-    padding: 0 32px 0 32px;
-    gap: 60px; /* Espaço entre o texto e a imagem */
+    padding: 80px 20px; /* Padding vertical para respiro */
+    gap: 60px;
 }
 
-.hero-content {
-    flex: 1.2; /* Dá um pouco mais de espaço para o texto */
-}
-
-.hero-image {
-    flex: 1;
-}
-
-.hero-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
+.hero-content { flex: 1.2; }
+.hero-image { flex: 1; }
+.hero-image img { width: 100%; display: block; }
 
 .hero h1 {
-    font-size: 2.4rem; 
+    font-size: 2.4rem;
     line-height: 1.1;
-    color: #1a1a1a;
+    color: var(--dark);
     margin-bottom: 24px;
     font-weight: 700;
 }
 
-/* Aplicando os destaques coloridos */
-.hero h1 .destaque-rosa{
-    color: #FA74BB;
-}
-
-.hero h1 .destaque-azul {
-    color: #00c1cf;
-}
+.destaque-rosa { color: var(--pink); }
+.destaque-azul { color: var(--blue); }
 
 .hero p {
     font-size: 1.4rem;
-    color: #666;
+    color: var(--gray);
     line-height: 1.6;
     margin-bottom: 40px;
-    max-width: 500px; /* Evita que o parágrafo fique largo demais */
+    max-width: 500px;
 }
 
-/* A parte que encosta nas margens da tela */
 .pergunta-chamativa {
-    background-color: #FA74BB; /* Um rosa bem clarinho para o fundo */
+    background-color: var(--pink);
     width: 100%;
 }
 
-/* O conteúdo que respeita os 1200px */
 .pergunta-chamativa .container {
-    max-width: 1200px;
-    margin: 0 auto;
     padding: 40px;
+    display: block; /* Garante centralização do texto */
 }
 
 .pergunta-chamativa p {
-    color: white; 
+    color: white;
     font-size: 1.4rem;
     line-height: 1.6;
     font-weight: 500;
@@ -166,23 +151,13 @@ nav a.active {
     display: flex;
     align-items: center;
     gap: 80px;
-    padding: 24px 0;
+    padding: 60px 0;
 }
 
-.features-image, .features-content {
-    flex: 1;
-}
+.features-image, .features-content { flex: 1; }
+.features-image img { width: 100%; height: auto;: block; }
 
-.features-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-.lista-topicos {
-    list-style: none;
-}
-
+.lista-topicos { list-style: none; }
 .lista-topicos li {
     display: flex;
     align-items: flex-start;
@@ -190,150 +165,81 @@ nav a.active {
     margin-bottom: 35px;
     font-size: 1.15rem;
     color: #333;
-    line-height: 1.5;
 }
 
-.emoji {
-    font-size: 1.8rem;
-    line-height: 1;
+.emoji { font-size: 1.8rem; }
+.lista-topicos strong { color: #000; font-weight: 700; }
+
+/* OVERLAY (Fora da Media Query para funcionar sempre que ativo) */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
 }
 
-.lista-topicos strong {
-    color: #000;
-    font-weight: 700;
+.overlay.active {
+    opacity: 1;
+    pointer-events: auto;
 }
 
-/* RESPONSIVIDADE (MOBILE)*/
+/* 6. RESPONSIVIDADE (MOBILE) */
 @media (max-width: 800px) {
+    .menu-toggle { display: flex; order: 2; }
+    
+    /* Animação do X */
+    .menu-toggle.active .bar:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); }
+    .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
+    .menu-toggle.active .bar:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); }
 
-    .menu-toggle {
-    display: flex; /* Aparece no celular */
-    order: 2;
-    }
-
-    .menu-toggle.active .bar:nth-child(1) {
-    transform: rotate(-45deg) translate(-5px, 6px);
-}
-
-    /* A segunda barra (do meio) desaparece */
-    .menu-toggle.active .bar:nth-child(2) {
-        opacity: 0;
-    }
-
-    /* A terceira barra gira 45 graus e sobe */
-    .menu-toggle.active .bar:nth-child(3) {
-        transform: rotate(45deg) translate(-5px, -6px);
-    }
-
-    /* Esconde a lista por padrão no celular */
     .nav-menu {
-        display: flex;
-        flex-direction: column;
+        position: absolute;
+        top: 100%; /* Brota exatamente embaixo do header */
+        left: 0;
         width: 100%;
         background-color: white;
-        position: absolute; /* Para flutuar sobre o conteúdo */
-        top: 70px; /* Ajuste para ficar logo abaixo do logo */
-        left: 0;
-        padding: 20px 0;
-        box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+        padding: 30px 0;
+            
+        /* Estado inicial: Escondido */
+        display: flex;
+        flex-direction: column;
         opacity: 0;
-        transform: translateY(-20px);
-        pointer-events: none;
-        transition: all 0.4s ease;
-    } 
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: var(--transition);
+        z-index: 1000;    
+    }
 
-    /* Só será ativada pelo JavaScript */
     .nav-menu.active {
         opacity: 1;
-        transform: translateY(0); /* Desce para a posição original */
-        pointer-events: auto; /* Permite clicar nos links */
-    }
-
-    .overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background-color: rgba(0, 0, 0, 0.5); 
-        z-index: 999; 
-        
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.4s ease;
-    }
-
-    .overlay.active {
-        opacity: 1;
         visibility: visible;
-        pointer-events: auto;
+        transform: translateY(0);
     }
 
-    header .container {
-        flex-direction: row; 
-        justify-content: space-between;
-        position: relative;
-    }
-
-    /* Remove o 'space-between' para os itens empilharem */
-    .container {
-        flex-direction: column;
-        text-align: center;
-        gap: 20px;
-    }
-
-    /* Texto em cima, Imagem embaixo */
-    .hero {
-        flex-direction: column;
-        padding: 40px 20px;
-        text-align: center;
-    }
-
-    .hero-content {
-        order: 1; /* Texto primeiro */
-    }
-
-    .hero-image {
-        order: 2; /* Imagem depois */
-        margin-top: 30px;
-    }
-
-    .hero h1 {
-        font-size: 1.8rem; /* Diminui o título no celular */
-    }
-
-    .hero p {
-        margin: 0 auto 30px auto; /* Centraliza o parágrafo */
-    }
-
-    /* Ajuste de preenchimento */
-    .pergunta-chamativa .container {
-        display: block; /* Garante que não tente separar o texto de nada */
-        padding: 40px 20px;
-    }
-
-    .pergunta-chamativa p {
-        font-size: 1.2rem;
-    }
-
-    /* Inverte para o texto ficar sempre em cima da imagem */
-    .features {
-        flex-direction: column;
-        padding: 40px 20px;
-        gap: 40px;
-    }
-
-    .features-content {
-        order: 1;
-    }
-
-    .features-image {
-        order: 2;
-    }
-
-    /* Ajuste para os links não ficarem colados */
     nav ul {
         flex-direction: column;
-        gap: 15px;
+        gap: 25px;
+        text-align: center;
+        width: 100%;
     }
+
+    /* Ajustes de Seções no Mobile */
+    .hero, .features {
+        flex-direction: column;
+        align-items: center;
+        padding: 50px 20px;
+    }
+
+    .features { gap: 2px; }
+
+    .hero-content, .features-content { order: 1; display: flex; flex-direction: column; align-items: center; text-align: center; width: 100%; }
+    .hero-image, .features-image { order: 2; max-width: 320px; height: auto;}
+
+    .features li {text-align: left;}
 }
